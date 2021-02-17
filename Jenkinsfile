@@ -1,12 +1,19 @@
-node {
-	stage('Build') {
-		echo "Build"
-	}
-	stage('Test') {
-		echo "Test"
+pipeline {
+	stages {
 
-	stage('deploy') {
-		echo "deploy"
-	}
-}
+		stage('Build') {
+			steps {
+				echo "Build"
+				}
+		}
+		stage('Test') {
+				steps {
+				echo "Test"
+			}
+		}
+		stage('deploy') {
+			steps {
+				echo "deploy"
+				}
+		}
 }
