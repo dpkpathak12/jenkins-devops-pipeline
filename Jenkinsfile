@@ -19,8 +19,8 @@ pipeline {
 				echo "JOB_ID - $env.JOB_ID"
 				echo "JOB_URL - $env.JOB_URL"
 				echo "BUILD_URL - $env.BUILD_URL"
-				echo "docker --version"
-				echo "mvn --version"
+				sh "docker --version"
+				sh "mvn --version"
 				echo "installation successful"
 				}
 		}
