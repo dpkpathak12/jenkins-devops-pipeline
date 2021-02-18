@@ -7,7 +7,7 @@ pipeline {
 			steps {
 
 				echo "Build"
-				sh "node --version"
+			
 				echo "BUILD_ID - $env.BUILD_ID"
 				echo "BUILD_TAG - $env.BUILD_TAG"
 				echo "$PATH - $env.PATH"
