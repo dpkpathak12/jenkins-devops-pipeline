@@ -48,6 +48,7 @@ pipeline {
 		}
 		stage('docker build') {
 			steps {
+				sh "chmod 777 -R /var/jenkins_home/workspace/jenkins-devops-pipeline"
 				script{
 					dockerImage = docker.build("dpkp125/currency-exchange-devops:${env.BUILD_ID}")
 				}
