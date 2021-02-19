@@ -2,7 +2,7 @@ pipeline {
 	agent any
 //agent { docker { image "maven:6.3.0"} }
 	environment {
-		//dockerHome = tool 'mydocker'
+		dockerHome = tool 'mydocker'
 		mavenHome = tool 'mymaven'
 		PATH = "$mavenHome/bin:$PATH"
 	}
@@ -10,7 +10,8 @@ pipeline {
 
 		stage('checkout') {
 			steps {
-				//sh "docker version"
+				sh "chmod 777 -R /var/jenkins_home/workspace/jenkins-devops-pipeline@tmp/durable-48ec7968/script.sh"
+				sh "docker version"
 				sh "mvn --version"
 				
 				echo "Build"
@@ -48,7 +49,7 @@ pipeline {
 		}
 		stage('docker build') {
 			steps {
-				sh "chmod 777 -R /var/jenkins_home/workspace/jenkins-devops-pipeline"
+				
 				script{
 					dockerImage = docker.build("dpkp125/currency-exchange-devops:${env.BUILD_ID}")
 				}
