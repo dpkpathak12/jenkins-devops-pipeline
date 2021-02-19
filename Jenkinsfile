@@ -8,10 +8,10 @@ pipeline {
 	}
 	stages {
 
-		stage('Build') {
+		stage('checkout') {
 			steps {
-				sh "docker version"
-				sh "mvn --version"
+				//sh "docker version"
+				//sh "mvn --version"
 				
 				echo "Build"
 
@@ -25,15 +25,21 @@ pipeline {
 				echo "installation successful"
 				}
 		}
-		stage('Test') {
+		stage('compile') {
 				steps {
-				echo "Test"
+
+				sh "mvn clean compile"
 			}
 		}
-		stage('deploy') {
+		stage('test') {
 			steps {
-				echo "deploy"
-				}
+				sh "mvn test"	
+					}
+		}			
+		stage('integration test') {
+			steps {
+				sh "mvn failsafe:integration-test failsafe:verify"	
+					}
 		}
 	}
 }
