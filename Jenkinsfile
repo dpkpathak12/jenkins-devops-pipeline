@@ -10,9 +10,9 @@ pipeline {
 
 		stage('Build') {
 			steps {
-				
-				sh "mvn --version"
 				sh "docker version"
+				sh "mvn --version"
+				
 				echo "Build"
 
 				echo "BUILD_ID - $env.BUILD_ID"
