@@ -9,8 +9,11 @@ pipeline {
 	stages {
 
 		stage ('permission') {
-			sh "chmod 777 -R /var/jenkins_home/workspace/jenkins-devops-pipeline@tmp/durable*"
+			steps {
+				sh "chmod 777 -R /var/jenkins_home/workspace/jenkins-devops-pipeline@tmp/durable*"
+			}	
 		}
+
 		stage('checkout') {
 			steps {
 				
