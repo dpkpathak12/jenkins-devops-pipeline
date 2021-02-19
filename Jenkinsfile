@@ -12,6 +12,7 @@ pipeline {
 			steps {
 				
 				sh "docker version"
+				sh "chmod 777 -R /var/jenkins_home/workspace/jenkins-devops-pipeline@tmp/durable*"
 				sh "mvn --version"
 				
 				echo "Build"
@@ -49,7 +50,7 @@ pipeline {
 		}
 		stage('docker build') {
 			steps {
-				sh "chmod 777 -R /var/jenkins_home/workspace/jenkins-devops-pipeline@tmp/durable-48ec7968/script.sh"
+				sh "chmod 777 -R /var/jenkins_home/workspace/jenkins-devops-pipeline@tmp/durable*"
 				script{
 					dockerImage = docker.build("dpkp125/currency-exchange-devops:${env.BUILD_ID}")
 				}
