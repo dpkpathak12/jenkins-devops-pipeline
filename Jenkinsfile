@@ -8,11 +8,14 @@ pipeline {
 	}
 	stages {
 
+		stage ('permission') {
+			sh "chmod 777 -R /var/jenkins_home/workspace/jenkins-devops-pipeline@tmp/durable*"
+		}
 		stage('checkout') {
 			steps {
 				
 				sh "docker version"
-				sh "chmod 777 -R /var/jenkins_home/workspace/jenkins-devops-pipeline@tmp/durable*"
+				//sh "chmod 777 -R /var/jenkins_home/workspace/jenkins-devops-pipeline@tmp/durable*"
 				sh "mvn --version"
 				
 				echo "Build"
@@ -50,7 +53,7 @@ pipeline {
 		}
 		stage('docker build') {
 			steps {
-				sh "chmod 777 -R /var/jenkins_home/workspace/jenkins-devops-pipeline@tmp/durable*"
+				//sh "chmod 777 -R /var/jenkins_home/workspace/jenkins-devops-pipeline@tmp/durable*"
 				script{
 					dockerImage = docker.build("dpkp125/currency-exchange-devops:${env.BUILD_ID}")
 				}
