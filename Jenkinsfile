@@ -10,7 +10,7 @@ pipeline {
 
 		stage ('permission') {
 			steps {
-				sh "chmod 777 -R /var/jenkins_home/workspace/jenkins-devops-pipeline@tmp/*"
+				sh "chmod 777 -R /var/jenkins_home/workspace/jenkins-devops-pipeline@tmp"
 			}	
 		}
 
