@@ -41,5 +41,28 @@ pipeline {
 				sh "mvn failsafe:integration-test failsafe:verify"	
 					}
 		}
+		stage('integration test not reopen') {
+			steps {
+				sh "mvn package -DskipTests"	
+					}
+		}
+		stage('docker build') {
+			steps {
+				script{
+					dockerImage = docker.build("dpkp125/currency-exchange-devops:${env.BUILD_ID}")
+				}
+			}
+		}
+		stage('docker push') {
+			steps {
+				script {
+					docker.withRegistry('', 'dockerhub') {
+						dockerImage.push()
+						dockerImage.push('latest')
+					}
+				}
+			}
+		}
+		
 	}
 }
